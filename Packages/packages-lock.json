@@ -135,19 +135,6 @@
       "dependencies": {
         "com.unity.burst": "1.6.6",
         "com.unity.test-framework": "1.1.31"
-<<<<<<< HEAD
-=======
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.collections": {
-      "version": "1.2.4",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.burst": "1.6.6",
-        "com.unity.test-framework": "1.1.31"
->>>>>>> master
       },
       "url": "https://packages.unity.com"
     },
@@ -205,19 +192,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "3.2.1",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-=======
->>>>>>> GP_Pierre
->>>>>>> master
     "com.unity.render-pipelines.core": {
       "version": "14.0.9",
       "depth": 1,
@@ -247,23 +221,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    "com.unity.services.core": {
-      "version": "1.11.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.unitywebrequest": "1.0.0",
-        "com.unity.nuget.newtonsoft-json": "3.2.1",
-        "com.unity.modules.androidjni": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-=======
->>>>>>> GP_Pierre
->>>>>>> master
     "com.unity.shadergraph": {
       "version": "14.0.9",
       "depth": 1,
