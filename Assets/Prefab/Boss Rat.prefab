@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5910846798509927722}
   - component: {fileID: 4361836420443628877}
   - component: {fileID: 8814402772442482422}
+  - component: {fileID: -8700061628927466816}
   m_Layer: 0
   m_Name: Boss Rat
   m_TagString: Untagged
@@ -153,3 +154,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _currentHealth: 0
+--- !u!114 &-8700061628927466816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649345520550172641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b31d027f1d883f4891a56f32bb911b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceAttack: 3
+  _damage: 10
+  _cooldown: 3
