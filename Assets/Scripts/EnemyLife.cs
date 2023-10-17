@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class EnemyLife : MonoBehaviour
 {
     // Field
     [SerializeField, ValidateInput("ValidateMaxHealth")]
@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Heal");
     }
 
-    public void TakeDamage(int amount)
+    void TakeDamage(int amount)
     {
         // Guards
         if (amount < 0)
