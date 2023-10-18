@@ -67,7 +67,7 @@ public class EnemyLife : MonoBehaviour
         Debug.Log("Heal");
     }
 
-    void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         // Guards
         if (amount < 0)
