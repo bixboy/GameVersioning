@@ -1,50 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Player Movement with WASD
+
+    public float moveSpeed = 150f;
+    public float maxSpeed = 8f;
+
+    // Each frame of physics, what percentage of the speed should be shaved off the velocity out of 1 (100%)
+    public float idleFriction = 0.9f;
+    Rigidbody2D rb;
+
+    SpriteRenderer spriteRenderer;
+
+    public GameObject _colliderArea;
+    public Collider2D _areacollider;
+
+    Vector2 moveInput = Vector2.zero;
+
+    bool _isMoving = false;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        _areacollider = _colliderArea.GetComponent<Collider2D>();
+    }
+
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
+
+        if (moveInput != Vector2.zero)
         {
-            transform.position += Vector3.up * 0.2f;
+
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity + (moveInput * moveSpeed * Time.deltaTime), maxSpeed);
+
+            // Control whether looking left or right
+            if (moveInput.x > 0)
+            {
+                spriteRenderer.flipX = false;
+                gameObject.BroadcastMessage("Right", true);
+            }
+            else if (moveInput.x < 0)
+            {
+                spriteRenderer.flipX = true;
+                gameObject.BroadcastMessage("Right", false);
+            }
+            else if (moveInput.y > 0)
+            {
+                spriteRenderer.flipY = false;
+                gameObject.BroadcastMessage("Top", true);
+            }
+            else if (moveInput.y < 0)
+            {
+                spriteRenderer.flipY = true;
+                gameObject.BroadcastMessage("Top", false);
+            }
+            _isMoving = true;
         }
-        if (Input.GetKey(KeyCode.S))
+        else
         {
-            transform.position += Vector3.down * 0.2f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.left * 0.2f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += Vector3.right * 0.2f;
+            // No movement so interpolate velocity towards 0
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, idleFriction);
+
+            _isMoving = false;
         }
     }
-    //Player Dash with Spacebar any direction
-    void Update()
+
+
+    // Get input values for player movement
+    void OnMove(InputValue value)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                transform.position += Vector3.up * 2f;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                transform.position += Vector3.down * 2f;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.position += Vector3.left * 2f;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.position += Vector3.right * 2f;
-            }
-        }
-    }   
+        moveInput = value.Get<Vector2>();
+    }
 }

@@ -20,10 +20,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !_attacking)
-        {
-            Attack();
-        }
+ 
     }
 
     private void Attack()

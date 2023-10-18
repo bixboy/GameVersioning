@@ -4,13 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLife : MonoBehaviour
+public class EnemyLife : MonoBehaviour, IDamage
 {
     // Field
     [SerializeField, ValidateInput("ValidateMaxHealth")]
     private int _maxHealth;
     [SerializeField]
     private int _currentHealth;
+
+    private Rigidbody2D _enemyRb;
 
     private bool _isDie;
 
@@ -24,6 +26,7 @@ public class EnemyLife : MonoBehaviour
     private void Start()
     {
         CurrentHealth = _maxHealth;
+        _enemyRb = GetComponent<Rigidbody2D>();
     }
 
     private void Reset()
@@ -84,6 +87,25 @@ public class EnemyLife : MonoBehaviour
         Debug.Log("Damage");
     }
 
+    public void TakeDamage(int damage, Vector2 knockback)
+    {
+        // Guards
+        if (damage < 0)
+        {
+            throw new ArgumentException("Mauvaise valeur, valeur négative");
+        }
+
+        _currentHealth -= damage;
+
+        _enemyRb.AddForce(knockback);
+
+        _currentHealth = Math.Clamp(_currentHealth - damage, 0, _maxHealth);
+
+        if (_currentHealth <= 0) Die();
+
+        Debug.Log("Damage");
+    }
+
     void Die()
     {
         _isDie = true;
@@ -94,4 +116,5 @@ public class EnemyLife : MonoBehaviour
 
     [Button] void TakeDamage1() => TakeDamage(10);
     [Button] void Regeneration2() => Regen(5);
+
 }
