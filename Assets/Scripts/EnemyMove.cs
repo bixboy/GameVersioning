@@ -12,11 +12,17 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private float _areaFocus;
 
-    private GameObject target;
+    private GameObject _target;
+
+    [SerializeField]
+    private int _timeFocused;
+    [SerializeField]
+    private bool _focused = false;
+    private bool _isCoroutineRunning = false;
 
     private void Start()
     {
-        target = GameObject.Find("Player");
+        _target = GameObject.Find("Player");
     }
 
     void OnDrawGizmos()
@@ -28,15 +34,41 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        Transform targetDistance = target.transform;
+        Transform targetDistance = _target.transform;
 
         float distanceToPlayer = Vector2.Distance(transform.position, targetDistance.position);
         if (distanceToPlayer <= _areaFocus)
         {
+            if (!_focused)
+            {
+                _focused = true;
+            }
+
             if (distanceToPlayer > _distanceStop)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetDistance.position, _speedMove * Time.deltaTime);
+
+            }
+        }
+        else
+        {
+            if (_focused && !_isCoroutineRunning) 
+            {
+                StartCoroutine(TimeFocused(_timeFocused));
+                _isCoroutineRunning = true;
+            }
+
+            if (distanceToPlayer > _distanceStop && _focused)
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetDistance.position, _speedMove * Time.deltaTime);
             }
         }
+    }
+
+    private IEnumerator TimeFocused(int time)
+    {
+        yield return new WaitForSeconds(time);
+        _focused = false;
+        _isCoroutineRunning = false;
     }
 }
