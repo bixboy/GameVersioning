@@ -5,28 +5,37 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    private float moveSpeed = 150f;
+    [SerializeField]
+    private float maxSpeed = 8f;
+    [SerializeField]
+    private float idleFriction = 0.9f;
+    [SerializeField]
+    private int _cooldownTime;
 
-    public float moveSpeed = 150f;
-    public float maxSpeed = 8f;
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private Animator _animator;
 
-    // Each frame of physics, what percentage of the speed should be shaved off the velocity out of 1 (100%)
-    public float idleFriction = 0.9f;
-    Rigidbody2D rb;
+    [SerializeField]
+    private GameObject _colliderArea;
+    private Collider2D _areacollider;
 
-    SpriteRenderer spriteRenderer;
 
-    public GameObject _colliderArea;
-    public Collider2D _areacollider;
+    private Vector2 moveInput = Vector2.zero;
 
-    Vector2 moveInput = Vector2.zero;
-
-    bool _isMoving = false;
+    private bool _isMoving = false;
+    public bool _cooldownEnabled = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         _areacollider = _colliderArea.GetComponent<Collider2D>();
+
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -69,6 +78,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnAttack()
+    {
+        if(!_cooldownEnabled)
+        {
+            _animator.SetTrigger("Attack");
+            _cooldownEnabled = true;
+            StartCoroutine(Cooldown(_cooldownTime));
+        }
+    }
+
+    private IEnumerator Cooldown(int time)
+    {
+        yield return new WaitForSeconds(time);
+        _cooldownEnabled = false;
+    }
 
     // Get input values for player movement
     void OnMove(InputValue value)

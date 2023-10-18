@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7693058311789104599}
   - component: {fileID: 1368355285274027747}
   - component: {fileID: 179998658588904308}
-  - component: {fileID: 1453910129470302026}
   - component: {fileID: 6086775274680567119}
+  - component: {fileID: 1453910129470302026}
   m_Layer: 0
   m_Name: Normal Rat
   m_TagString: Untagged
@@ -168,20 +168,6 @@ MonoBehaviour:
   _areaFocus: 2
   _timeFocused: 3
   _focused: 0
---- !u!114 &1453910129470302026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2571876993549857954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16bba10c3ff2e5246945805d00cdd177, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _currentHealth: 100
 --- !u!114 &6086775274680567119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,3 +183,17 @@ MonoBehaviour:
   _distanceAttack: 3
   _damage: 5
   _cooldown: 3
+--- !u!114 &1453910129470302026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571876993549857954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bba10c3ff2e5246945805d00cdd177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 100

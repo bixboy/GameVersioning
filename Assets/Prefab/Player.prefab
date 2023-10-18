@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7822213616087270662}
   - component: {fileID: 9158308536603637051}
+  - component: {fileID: 4335987143006449984}
   m_Layer: 0
   m_Name: AreaCollider
   m_TagString: Untagged
@@ -80,6 +81,22 @@ PolygonCollider2D:
       - {x: 0, y: 0}
       - {x: 1.5, y: -1.2}
   m_UseDelaunayMesh: 0
+--- !u!114 &4335987143006449984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764831864819046639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe78df4980083a74788e367888079663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _knockbackForce: 500
+  _cooldownTime: 0
+  _cooldownEnabled: 0
 --- !u!1 &6725556471062880245
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,10 +107,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6867997047996992721}
   - component: {fileID: 4477271322858217805}
+  - component: {fileID: 1716534637335330987}
   - component: {fileID: 3539614446497551489}
   - component: {fileID: 3835366550853880764}
   - component: {fileID: 158794737348420730}
-  - component: {fileID: 6996775702858133578}
+  - component: {fileID: 644959160275236109}
+  - component: {fileID: 8023418255275880124}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -169,6 +188,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &1716534637335330987
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6725556471062880245}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!50 &3539614446497551489
 Rigidbody2D:
   serializedVersion: 4
@@ -211,6 +265,8 @@ MonoBehaviour:
   moveSpeed: 150
   maxSpeed: 8
   idleFriction: 0.9
+  _colliderArea: {fileID: 0}
+  _areacollider: {fileID: 0}
 --- !u!114 &158794737348420730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _currentHealth: 100
---- !u!114 &6996775702858133578
+--- !u!114 &644959160275236109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,8 +290,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 6725556471062880245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952eb8c930756de49952514db2c0e9f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attacking: 0
-  timeCooldown: 3
+  m_Actions: {fileID: -944628639613478452, guid: 43217fc47011f7744885daa7c93ee6f0, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!95 &8023418255275880124
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6725556471062880245}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2944a7f0f2b8d7847af8dee5d6c4380e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -13,11 +13,25 @@ public class EnemyLife : MonoBehaviour, IDamage
     private int _currentHealth;
 
     private Rigidbody2D _enemyRb;
+    private Collider2D _physicsCollider;
 
     private bool _isDie;
 
     // Properties
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
+    public bool Targetable { get { return _targetable; } 
+        set {
+            _targetable = value;
+
+            if (_isDie)
+            {
+                _enemyRb.simulated = false;
+            }
+
+            _physicsCollider.enabled = value;
+        } }
+
+    private bool _targetable = true;
 
 
     // Methodes
@@ -27,6 +41,7 @@ public class EnemyLife : MonoBehaviour, IDamage
     {
         CurrentHealth = _maxHealth;
         _enemyRb = GetComponent<Rigidbody2D>();
+        _physicsCollider = GetComponent<Collider2D>();
     }
 
     private void Reset()
@@ -99,8 +114,6 @@ public class EnemyLife : MonoBehaviour, IDamage
 
         _enemyRb.AddForce(knockback);
 
-        _currentHealth = Math.Clamp(_currentHealth - damage, 0, _maxHealth);
-
         if (_currentHealth <= 0) Die();
 
         Debug.Log("Damage");
@@ -110,6 +123,8 @@ public class EnemyLife : MonoBehaviour, IDamage
     {
         _isDie = true;
         _currentHealth = 0;
+
+        Targetable = false;
 
         Debug.Log("Die");
     }

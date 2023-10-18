@@ -29,15 +29,16 @@ public class AttackArea : MonoBehaviour
 
         if (damageObject != null)
         {
-            Vector3 parentPosition = gameObject.GetComponentInParent<Transform>().position;
+            Vector3 parentPosition = transform.parent.position;
 
             Vector2 direction = (Vector2)(collider.gameObject.transform.position - parentPosition).normalized;
+
             Vector2 knockback = direction * _knockbackForce;
 
             damageObject.TakeDamage(_damage, knockback);
         } else
         {
-            Debug.LogWarning("Collider n'est pas implementer");
+            Debug.LogWarning("Collider n'est pas implementer avec le IDamage");
         }
 
     }
@@ -66,12 +67,5 @@ public class AttackArea : MonoBehaviour
             gameObject.transform.rotation = faceBottomRotation;
 
         }
-    }
-
-    private void CalculateKonckback()
-    {
-    
-        
-
     }
 }
