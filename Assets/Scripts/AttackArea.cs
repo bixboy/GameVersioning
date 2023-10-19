@@ -38,7 +38,7 @@ public class AttackArea : MonoBehaviour
             damageObject.TakeDamage(_damage, knockback);
         } else
         {
-            Debug.LogWarning("Collider n'est pas implementer avec le IDamage");
+            Debug.LogWarning("pas de collider");
         }
 
     }

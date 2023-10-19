@@ -127,6 +127,7 @@ public class EnemyLife : MonoBehaviour, IDamage
         Targetable = false;
 
         Debug.Log("Die");
+        Destroy(gameObject);
     }
 
     [Button] void TakeDamage1() => TakeDamage(10);

@@ -25,7 +25,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveInput = Vector2.zero;
 
-    private bool _isMoving = false;
+    bool IsMoving {
+
+         set {
+            _isMoving = value;
+            _animator.SetBool("isMoving", _isMoving);
+        }
+    }
+
+    private bool _isMoving;
     public bool _cooldownEnabled = false;
 
     void Start()
@@ -51,30 +59,32 @@ public class PlayerMovement : MonoBehaviour
             {
                 spriteRenderer.flipX = false;
                 gameObject.BroadcastMessage("Right", true);
+                _animator.SetBool("MoveTop", false);
             }
             else if (moveInput.x < 0)
             {
                 spriteRenderer.flipX = true;
                 gameObject.BroadcastMessage("Right", false);
+                _animator.SetBool("MoveTop", false);
             }
             else if (moveInput.y > 0)
             {
-                spriteRenderer.flipY = false;
                 gameObject.BroadcastMessage("Top", true);
+                _animator.SetBool("MoveTop", true);
             }
             else if (moveInput.y < 0)
             {
-                spriteRenderer.flipY = true;
                 gameObject.BroadcastMessage("Top", false);
+                _animator.SetBool("MoveTop", true);
             }
-            _isMoving = true;
+            IsMoving = true;
         }
         else
         {
             // No movement so interpolate velocity towards 0
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, idleFriction);
 
-            _isMoving = false;
+            IsMoving = false;
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -46,6 +47,11 @@ public class EnemyMove : MonoBehaviour
 
             if (distanceToPlayer > _distanceStop)
             {
+                Vector3 directionToPlayer = targetDistance.position - transform.position;
+                directionToPlayer *= -1;
+                Quaternion rotationToPlayer = Quaternion.LookRotation(Vector3.forward, directionToPlayer);
+                transform.rotation = Quaternion.Euler(0, 0, rotationToPlayer.eulerAngles.z);
+
                 transform.position = Vector2.MoveTowards(transform.position, targetDistance.position, _speedMove * Time.deltaTime);
 
             }
@@ -60,6 +66,12 @@ public class EnemyMove : MonoBehaviour
 
             if (distanceToPlayer > _distanceStop && _focused)
             {
+                // Calculer la direction vers le joueur
+                Vector3 directionToPlayer = targetDistance.position - transform.position;
+                directionToPlayer *= -1;
+                Quaternion rotationToPlayer = Quaternion.LookRotation(Vector3.forward, directionToPlayer);
+                transform.rotation = Quaternion.Euler(0, 0, rotationToPlayer.eulerAngles.z);
+
                 transform.position = Vector2.MoveTowards(transform.position, targetDistance.position, _speedMove * Time.deltaTime);
             }
         }
