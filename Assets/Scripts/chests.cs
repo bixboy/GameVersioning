@@ -1,20 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
-public class Doors : MonoBehaviour
+
+public class chests : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
     private Sprite _newSpriteRenderer;
     [SerializeField]
-    private GameObject _textDoors;
-    [SerializeField]
-    private BoxCollider2D _boxCollider;
-    [SerializeField]
-    private PolygonCollider2D _polygonCollider;
+    private GameObject _textChests;
     [SerializeField]
     private bool _isActif = false;
     [SerializeField]
@@ -23,24 +17,25 @@ public class Doors : MonoBehaviour
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _boxCollider = GetComponent<BoxCollider2D>();
-        _polygonCollider = GetComponent <PolygonCollider2D>();
     }
 
-    void OnInteraction()
-    {
+    void OnInteraction()
+
+    {
+
         if (!_isActif && _inTrigger)
         {
-            OpenDoor();
-            Debug.Log("Open Door");
-        }
+            OpenChest();
+            Debug.Log("Open Chest");
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !_isActif)
         {
-            _textDoors.SetActive(true);
+            _textChests.SetActive(true);
             _inTrigger = true;
         }
     }
@@ -49,17 +44,16 @@ public class Doors : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            _textDoors.SetActive(false);
+            _textChests.SetActive(false);
             _inTrigger = false;
         }
     }
 
-    private void OpenDoor()
+    private void OpenChest()
     {
         _spriteRenderer.sprite = _newSpriteRenderer;
-        _polygonCollider.enabled = true;
-        _boxCollider.enabled = false;
-        _textDoors.SetActive(false);
+
+        _textChests.SetActive(false);
         _isActif = true;
     }
 }

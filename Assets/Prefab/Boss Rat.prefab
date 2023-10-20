@@ -85,7 +85,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 3.047619, y: 3.047619}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -123,8 +123,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15645564, y: 0.045302033}
-  m_Size: {x: 1.4626138, y: 1.6952713}
+  m_Offset: {x: 0.015657425, y: -0.36227155}
+  m_Size: {x: 1.1958385, y: 1.8583002}
   m_Direction: 0
 --- !u!50 &5756040815161502121
 Rigidbody2D:
@@ -152,7 +152,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!114 &4361836420443628877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedMove: 1
-  _distanceStop: 1
+  _distanceStop: 2
   _areaFocus: 5
   _timeFocused: 3
   _focused: 0
@@ -284,6 +284,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.19794333, y: 0.041042924}
-  m_Size: {x: 1.4237363, y: 1.4237363}
+  m_Offset: {x: 0.01565742, y: -0.3622715}
+  m_Size: {x: 1.195838, y: 1.8583}
   m_Direction: 0
