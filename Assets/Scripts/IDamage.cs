@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDamage
 {
-    public bool Targetable { set; get; }
+    public bool Targetable { set; get;}
 
     public void TakeDamage(int damage, Vector2 knockback);
     public void TakeDamage(int damage);
