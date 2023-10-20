@@ -89,7 +89,8 @@ public class PlayerHealth : MonoBehaviour
     {
         _isDie = true;
         _currentHealth = 0;
-        SceneManager.LoadScene(");
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
         Debug.Log("Die");
     }
 
