@@ -24,7 +24,7 @@ public class Spike : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !_isActif)
+        if (collision.CompareTag("Pieds") && !_isActif)
         {
             _isActif = true;
             _playerOnSpikes = true;
@@ -39,7 +39,7 @@ public class Spike : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && _isActif)
+        if (collision.CompareTag("Pieds") && _isActif)
         {
             _playerOnSpikes = false;
         }
