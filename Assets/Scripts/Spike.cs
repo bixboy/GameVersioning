@@ -12,7 +12,6 @@ public class Spike : MonoBehaviour
     private int _damage;
 
     private Animator _animator;
-    private GameObject _player;
     private PlayerHealth _playerHealth;
 
     private bool _playerOnSpikes = false;
@@ -30,8 +29,7 @@ public class Spike : MonoBehaviour
             _playerOnSpikes = true;
             _animator.SetTrigger("OnSpike");
 
-            _player = collision.gameObject;
-            _playerHealth = _player.GetComponent<PlayerHealth>();
+            _playerHealth = collision.GetComponentInParent<PlayerHealth>();
 
             StartCoroutine(CooldownSpike(_timeCooldown));
         }

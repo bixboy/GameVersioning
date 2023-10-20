@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class PlayerHealth : MonoBehaviour
 
     private bool _isDie;
 
+    GameObject GameManager;
+    private ReloadManager _reloadManager;
+
     // Properties
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
 
@@ -24,6 +28,11 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         CurrentHealth = _maxHealth;
+
+        GameManager = GameObject.FindGameObjectWithTag("GameManager");
+        _reloadManager = GameManager.GetComponent<ReloadManager>();
+        Transform _playerTransform = gameObject.transform;
+        _reloadManager.RestorePlayerPosition(_playerTransform);
     }
 
     private void Reset()
@@ -88,7 +97,8 @@ public class PlayerHealth : MonoBehaviour
     {
         _isDie = true;
         _currentHealth = 0;
-
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
         Debug.Log("Die");
     }
 

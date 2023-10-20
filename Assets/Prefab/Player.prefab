@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 6092221703372672835}
   m_Layer: 7
   m_Name: ColliderPieds
-  m_TagString: Untagged
+  m_TagString: Pieds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0067067146, y: -0.57341695}
+  m_Offset: {x: 0.005028248, y: -0.57341695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -170,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75856113, y: 0.30921698}
+  m_Size: {x: 0.5804949, y: 0.30921698}
   m_EdgeRadius: 0
 --- !u!1 &6725556471062880245
 GameObject:
@@ -296,8 +296,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.034577012, y: -0.08603656}
-  m_Size: {x: 0.77266526, y: 1.531338}
+  m_Offset: {x: -0.030641079, y: -0.056511164}
+  m_Size: {x: 0.67818546, y: 1.2833247}
   m_Direction: 0
 --- !u!50 &3539614446497551489
 Rigidbody2D:

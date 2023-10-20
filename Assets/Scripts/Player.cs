@@ -59,23 +59,43 @@ public class PlayerMovement : MonoBehaviour
             {
                 spriteRenderer.flipX = false;
                 gameObject.BroadcastMessage("Right", true);
+                _animator.SetBool("AttackRight", true);
+                _animator.SetBool("AttackTop", false);
+
+                _animator.SetBool("MoveRight", true);
                 _animator.SetBool("MoveTop", false);
+                _animator.SetBool("MoveDown", false);
             }
             else if (moveInput.x < 0)
             {
                 spriteRenderer.flipX = true;
                 gameObject.BroadcastMessage("Right", false);
+                _animator.SetBool("AttackRight", true);
+                _animator.SetBool("AttackTop", false);
+
+                _animator.SetBool("MoveRight", true);
                 _animator.SetBool("MoveTop", false);
+                _animator.SetBool("MoveDown", false);
             }
             else if (moveInput.y > 0)
             {
                 gameObject.BroadcastMessage("Top", true);
+                _animator.SetBool("AttackTop", true);
+                _animator.SetBool("AttackRight", false);
+
+                _animator.SetBool("MoveRight", false);
                 _animator.SetBool("MoveTop", true);
+                _animator.SetBool("MoveDown", false);
             }
             else if (moveInput.y < 0)
             {
                 gameObject.BroadcastMessage("Top", false);
-                _animator.SetBool("MoveTop", true);
+                _animator.SetBool("AttackTop", false);
+                _animator.SetBool("AttackRight", false);
+
+                _animator.SetBool("MoveRight", false);
+                _animator.SetBool("MoveTop", false);
+                _animator.SetBool("MoveDown", true);
             }
             IsMoving = true;
         }
@@ -85,6 +105,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, idleFriction);
 
             IsMoving = false;
+            _animator.SetBool("MoveRight", false);
+            _animator.SetBool("MoveTop", false);
+            _animator.SetBool("MoveDown", false);
         }
     }
 

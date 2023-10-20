@@ -59,6 +59,7 @@ public class Doors : MonoBehaviour
         _spriteRenderer.sprite = _newSpriteRenderer;
         _polygonCollider.enabled = true;
         _boxCollider.enabled = false;
+        _textDoors.SetActive(false);
         _isActif = true;
     }
 }
