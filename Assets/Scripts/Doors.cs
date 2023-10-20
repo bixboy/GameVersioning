@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
+using UnityEngine.InputSystem;
+
 public class Doors : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
@@ -27,13 +27,13 @@ public class Doors : MonoBehaviour
         _polygonCollider = GetComponent <PolygonCollider2D>();
     }
 
-    void OnInteraction()
-    {
+    void OnInteraction()
+    {
         if (!_isActif && _inTrigger)
         {
             OpenDoor();
             Debug.Log("Open Door");
-        }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
