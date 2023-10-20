@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLife : MonoBehaviour
+public class EnemyLife : MonoBehaviour, IDamage
 {
     // Field
     [SerializeField, ValidateInput("ValidateMaxHealth")]
@@ -12,10 +12,26 @@ public class EnemyLife : MonoBehaviour
     [SerializeField]
     private int _currentHealth;
 
+    private Rigidbody2D _enemyRb;
+    private Collider2D _physicsCollider;
+
     private bool _isDie;
 
     // Properties
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
+    public bool Targetable { get { return _targetable; } 
+        set {
+            _targetable = value;
+
+            if (_isDie)
+            {
+                _enemyRb.simulated = false;
+            }
+
+            _physicsCollider.enabled = value;
+        } }
+
+    private bool _targetable = true;
 
 
     // Methodes
@@ -24,6 +40,8 @@ public class EnemyLife : MonoBehaviour
     private void Start()
     {
         CurrentHealth = _maxHealth;
+        _enemyRb = GetComponent<Rigidbody2D>();
+        _physicsCollider = GetComponent<Collider2D>();
     }
 
     private void Reset()
@@ -67,7 +85,7 @@ public class EnemyLife : MonoBehaviour
         Debug.Log("Heal");
     }
 
-    void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         // Guards
         if (amount < 0)
@@ -84,14 +102,35 @@ public class EnemyLife : MonoBehaviour
         Debug.Log("Damage");
     }
 
+    public void TakeDamage(int damage, Vector2 knockback)
+    {
+        // Guards
+        if (damage < 0)
+        {
+            throw new ArgumentException("Mauvaise valeur, valeur négative");
+        }
+
+        _currentHealth -= damage;
+
+        _enemyRb.AddForce(knockback);
+
+        if (_currentHealth <= 0) Die();
+
+        Debug.Log("Damage");
+    }
+
     void Die()
     {
         _isDie = true;
         _currentHealth = 0;
 
+        Targetable = false;
+
         Debug.Log("Die");
+        Destroy(gameObject);
     }
 
     [Button] void TakeDamage1() => TakeDamage(10);
     [Button] void Regeneration2() => Regen(5);
+
 }
